@@ -7,6 +7,14 @@ const Teacher = require("./models/teacherLogin");
 const News = require("./models/schoolUpdates");
 require("dotenv").config();
 
+const updates = [
+  {
+    title: "Welcome to Madarsa Dua Eduational School",
+    description: "Welcome to Madarsa Dua Eduational School",
+    date: "2020-01-01",
+  },
+];
+
 //Database Connections
 
 mongoose
@@ -77,6 +85,18 @@ app.post("/teacher/login", async (req, res) => {
 
 //Post Request for Updates
 
+app.post("/school/updates", async (req, res) => {
+  try {
+    const { title, description } = req.body;
+    const newNews = await News.create({ title, description });
+    console.log("New Updates Done", newNews);
+    updates.push(newNews);
+    res.status(201).json(newNews);
+  } catch (error) {
+    console.error("Error creating school updates:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
