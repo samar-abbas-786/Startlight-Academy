@@ -10,6 +10,7 @@ import Parent from "./components/parents";
 // import Footer from "./components/footer";
 import React from "react";
 import Home from "./components/Home";
+import reportWebVitail from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {

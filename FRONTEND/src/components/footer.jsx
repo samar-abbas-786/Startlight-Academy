@@ -1,5 +1,4 @@
 import React from "react";
-import "../FRONTEND/src/App.js";
 import { Link } from "react-router-dom";
 import insta from "./insta.png";
 import fb from "./fb.png";
