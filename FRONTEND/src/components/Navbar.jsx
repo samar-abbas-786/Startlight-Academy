@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="fixed z-50 flex w-screen h-16 items-center justify-between font-bold  text-black border-b px-2 bg-lime-400 ">
+    <nav className="fixed z-50 flex w-screen h-16 items-center justify-between font-bold  text-black border-b px-2 bg-slate-300 ">
       <div className="logo w-2/5 text-xl font-bold font-mono">
         📚Madarsa Dua Educational School
       </div>
