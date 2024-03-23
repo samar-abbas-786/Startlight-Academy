@@ -7,6 +7,8 @@ import Contact from "./components/contact";
 import Teacher from "./components/teacher";
 import Student from "./components/student";
 import Parent from "./components/parents";
+import Updates from "./components/updates";
+
 // import Footer from "./components/footer";
 import React from "react";
 import Home from "./components/Home";
@@ -24,6 +26,7 @@ function App() {
         <Route exact path="/parents" element={<Parent />} />
         <Route exact path="/teacher" element={<Teacher />} />
         <Route exact path="/student" element={<Student />} />
+        <Route exact path="/updates" element={<Updates />} />
       </Routes>
     </BrowserRouter>
   );
