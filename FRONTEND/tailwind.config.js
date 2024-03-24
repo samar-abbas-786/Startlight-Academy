@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailgrids/plugin")],
 };
 
 // const { nextui } = require("@nextui-org/react");

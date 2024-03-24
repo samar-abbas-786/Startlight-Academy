@@ -6,7 +6,7 @@ const parents = () => {
     <>
       <Navbar />
       <div className="p-10 ">
-        <h1 className="text-lime-500 text-3xl text-center mt-10 mb-6 ml-6 ">
+        <h1 className=" bg-black text-white p-2 text-3xl text-center mt-10 mb-6 ml-6 ">
           Guidelines For Parents
         </h1>
         <div className="list text-wrap pl-7 space-y-3 ">
