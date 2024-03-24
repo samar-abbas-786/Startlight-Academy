@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Footer from "./footer";
+import Footer from "./footern";
 const parents = () => {
   return (
     <>
