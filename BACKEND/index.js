@@ -1,19 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 9000;
+const cors = require("cors");
 const User = require("./models/Registration");
 const Teacher = require("./models/teacherLogin");
 const News = require("./models/schoolUpdates");
 require("dotenv").config();
 
-const updates = [
-  {
-    title: "Welcome to Madarsa Dua Eduational School",
-    description: "Welcome to Madarsa Dua Eduational School",
-    date: "2020-01-01",
-  },
-];
+// const updates = [
+//   {
+//     title: "Welcome to Madarsa Dua Eduational School",
+//     description: "Welcome to Madarsa Dua Eduational School",
+//     date: "2020-01-01",
+//   },
+// ];
 
 //Database Connections
 
@@ -26,6 +27,7 @@ mongoose
 //MIddleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -34,8 +36,8 @@ app.get("/", (req, res) => {
 //Post Requests for Student
 app.post("/student/registration", async (req, res) => {
   try {
-    const { Name, email, password, phone } = req.body;
-    const newUser = await User.create({ Name, email, password, phone });
+    const { Name, email, password, Phone } = req.body;
+    const newUser = await User.create({ Name, email, password, Phone });
     console.log("New Registration Done", newUser);
   } catch (error) {
     console.log(error);
@@ -87,15 +89,20 @@ app.post("/teacher/login", async (req, res) => {
 
 app.post("/school/updates", async (req, res) => {
   try {
-    const { title, description } = req.body;
-    const newNews = await News.create({ title, description });
+    const { title, news } = req.body;
+    const newNews = await News.create({ title, news });
     console.log("New Updates Done", newNews);
-    updates.push(newNews);
+    // updates.push(newNews);
     res.status(201).json(newNews);
   } catch (error) {
     console.error("Error creating school updates:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
+});
+//getNews from Databases
+app.get("/get/news", async (req, res) => {
+  const news = await News.find();
+  res.status(200).json(news);
 });
 
 app.listen(PORT, () => {

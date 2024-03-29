@@ -1,28 +1,20 @@
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
-export default function Teacher() {
+export default function SchoolUpdates() {
   const [title, setTitle] = useState("");
   const [news, setNews] = useState("");
+
   const handleSubmit = (e) => {
-    axios
-      .post("http://localhost:9000/school/updates", {
-        title: title,
-        news: news,
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-      });
     e.preventDefault();
+
+    axios
+      .post("https://localhost:9000/school/updates", { title, news })
+      .then((result) => console.log("result:" + result))
+      .catch((err) => {
+        console.log("Error: " + err);
+      });
   };
-
-  const newsData = axios.get("http://localhost:9000/get/news");
-
-  
-
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl shadow-rose-600/40 ring-2 ring-indigo-600 lg:max-w-xl">
@@ -51,12 +43,12 @@ export default function Teacher() {
             >
               news
             </label>
-            <textarea
+            <input
               type="text"
               id="news"
               onChange={(e) => setNews(e.target.value)}
-              rows={5}
-              cols={10}
+              //   rows={10}
+              //   cols={20}
               className="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>

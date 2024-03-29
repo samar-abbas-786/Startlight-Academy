@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const updateSchema = new mongoose.Schema({
-  Name: {
+  title: {
     type: String,
     required: true,
   },
@@ -9,10 +9,10 @@ const updateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
+  // date: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
 });
 
 const News = mongoose.model("News", updateSchema);

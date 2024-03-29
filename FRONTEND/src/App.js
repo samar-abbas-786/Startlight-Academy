@@ -17,6 +17,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import { Button } from "@nextui-org/button";
 
 function App() {
+  // const getUpdates = () => {
+  //   fetch("/get/news")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // };
   return (
     <BrowserRouter>
       <Routes>

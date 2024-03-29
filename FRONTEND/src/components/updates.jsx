@@ -17,8 +17,7 @@ const Blog = () => {
                   Our Recent News
                 </h2>
                 <p className="text-base text-body-color dark:text-dark-6">
-                  There are many variations of passages of Lorem Ipsum available
-                  but the majority have suffered alteration in some form.
+                  Here are the important news
                 </p>
               </div>
             </div>
@@ -30,7 +29,7 @@ const Blog = () => {
               CardTitle="Meet AutoManage, the best AI management tools"
               CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
             />
-            <BlogCard
+            {/* <BlogCard
               date="Dec 22, 2023"
               CardTitle="Meet AutoManage, the best AI management tools"
               CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
@@ -39,7 +38,7 @@ const Blog = () => {
               date="Dec 22, 2023"
               CardTitle="Meet AutoManage, the best AI management tools"
               CardDescription="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            />
+            /> */}
           </div>
         </div>
       </section>
