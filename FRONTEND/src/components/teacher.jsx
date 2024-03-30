@@ -19,9 +19,7 @@ export default function Teacher() {
     e.preventDefault();
   };
 
-  const newsData = axios.get("http://localhost:9000/get/news");
-
-  
+  // const newsData = axios.get("http://localhost:9000/get/news");
 
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
