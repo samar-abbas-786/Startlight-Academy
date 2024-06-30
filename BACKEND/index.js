@@ -6,7 +6,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const User = require("./models/Registration");
-const Teacher = require("./models/teacherLogin");
+// const Teacher = require("./models/teacherLogin");
 const News = require("./models/schoolUpdates");
 const bcrypt = require("bcrypt");
 const { sendToken } = require("./utils/jwtToken");
@@ -24,11 +24,9 @@ require("dotenv").config();
 
 //Database Connections
 
-mongoose
-  .connect("mongodb://localhost:27017/Madarsa_Dua_Educational_School")
-  .then(() => {
-    console.log("DB Connected");
-  });
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log("DB Connected");
+});
 
 //MIddleware
 app.use(express.urlencoded({ extended: true }));
@@ -41,7 +39,7 @@ app.get("/", (req, res) => {
 });
 
 //Post Requests for Student
-app.post("/student/registration", async (req, res) => {
+app.post("/registration", async (req, res) => {
   try {
     const { Name, email, password, Phone } = req.body;
     const salt = await bcrypt.genSalt(10);
@@ -60,7 +58,7 @@ app.post("/student/registration", async (req, res) => {
   }
 });
 
-app.post("/student/login", async (req, res) => {
+app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -88,30 +86,30 @@ app.post("/student/login", async (req, res) => {
 });
 
 //Post Requests for Teacher
-app.post("/teacher/registration", async (req, res) => {
-  try {
-    const { Name, email, password, phone } = req.body;
-    const newTeacher = await Teacher.create({ Name, email, password, phone });
-    console.log("New Registration Done", newTeacher);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
+// app.post("/teacher/registration", async (req, res) => {
+//   try {
+//     const { Name, email, password, phone } = req.body;
+//     const newTeacher = await Teacher.create({ Name, email, password, phone });
+//     console.log("New Registration Done", newTeacher);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// });
 
-app.post("/teacher/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const teacher = await Teacher.findOne({ email: email, password: password });
-    if (!teacher) {
-      return res.status(404).json({ message: "No User Found" });
-    }
-    res.status(200).json(teacher);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
+// app.post("/teacher/login", async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const teacher = await Teacher.findOne({ email: email, password: password });
+//     if (!teacher) {
+//       return res.status(404).json({ message: "No User Found" });
+//     }
+//     res.status(200).json(teacher);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "Internal Server Error" });
+//   }
+// });
 
 //Post Request for Updates
 
@@ -142,7 +140,7 @@ app.get("/get/news", isAuthorized, async (req, res) => {
   const news = await News.find();
   res.status(200).json(news);
 });
-app.get("/student/logout", async (req, res) => {
+app.get("/logout", async (req, res) => {
   res
     .status(201)
     .cookie("token", "", {
