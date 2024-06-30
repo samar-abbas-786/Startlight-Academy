@@ -57,6 +57,13 @@ app.post("/registration", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+app.get("/getAllTeachers", async (req, res) => {
+  const allTeacher = await User.find({ role: "teacher" });
+  res.status(200).json({
+    success: true,
+    allTeacher,
+  });
+});
 
 app.post("/login", async (req, res) => {
   try {
