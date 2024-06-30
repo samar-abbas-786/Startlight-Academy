@@ -1,54 +1,107 @@
-import React from "react";
-// import About1 from "./about";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
-    <nav className="fixed z-50 flex w-screen h-16 md:h-20 items-center justify-between font-[400] text-white border-b px-2 bg-orange-900 ">
-      <div className="logo md:w-2/5 w-3/5 text-xl font-sans ">
-        📚Starlight Academy
+    <nav className="bg-orange-900  text-white fixed w-full z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center">
+            <div className="text-xl font-bold">📚 Starlight Academy</div>
+            <div className="hidden md:flex space-x-4 ml-10">
+              <Link to="/" className="hover:font-semibold">
+                HOME
+              </Link>
+              <Link to="/about" className="hover:font-semibold">
+                ABOUT
+              </Link>
+              <Link to="/contact" className="hover:font-semibold">
+                CONTACT US
+              </Link>
+              <div className="relative">
+                <select className="bg-transparent border-0 no-arrow text-white cursor-pointer">
+                  <option value="" disabled selected hidden>
+                    Student Section
+                  </option>
+                  <option value="">Student Result</option>
+                  <option value="">Student Attendance</option>
+                </select>
+              </div>
+              <div className="relative">
+                <select className="bg-transparent border-0 no-arrow text-white cursor-pointer">
+                  <option value="" disabled selected hidden>
+                    Courses Section
+                  </option>
+                  <option value="">6th Standard</option>
+                  <option value="">9th Standard</option>
+                  <option value="">11th Standard</option>
+                </select>
+              </div>
+              <Link to="/updates" className="hover:font-semibold">
+                UPDATES
+              </Link>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white text-3xl "
+            >
+              ☰
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="md:"></div>
-      <ul className=" hidden md:block  md:flex space-x-10 h-16 font-[400] grid-cols-7 items-center w-2/5 md:w-3/5 ">
-        <li className=" list-none h-16 flex items-center justify-center  text-[14px]  font-medium font-mono text-center text-white   hover:text-white hover:font-semibold">
-          <Link to="/">HOME</Link>
-        </li>
-        <li className="list-none h-16 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:text-white hover:font-semibold">
-          <Link to="/about">ABOUT</Link>
-        </li>
-        <li className="list-none h-16 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:text-white hover:font-semibold">
-          <Link to="/contact">CONTACT US</Link>
-        </li>
-        {/* <li className="list-none h-16 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:text-white hover:font-semibold">
-          <Link to="/parents">PARENTS</Link>
-        </li> */}
-        {/* <li className="list-none h-16 px-2 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:text-white hover:font-semibold">
-          <Link to="/teacher">TEACHER SECTION</Link>
-        </li> */}
-        <li className="list-none  h-16 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:font-semibold">
-          <select className="bg-transparent border-0 " name="" id="">
-            <option value="">Student Section</option>
-            <option value="">Student Result</option>
-            <option value="">Student Attendence</option>
-            <option value="">Student Result</option>
-          </select>
 
-          {/* <Link to="/student">STUDENT SECTION</Link> */}
-        </li>
-        <li className="list-none px-2 h-16 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:text-white hover:font-semibold">
-          <select className="bg-transparent " name="" id="">
-            <option value="">Courses Section</option>
-            <option value="">6th Standard</option>
-            <option value="">9th Standard</option>
-            <option value="">11th Standard</option>
-          </select>
-
-          {/* <Link to="/student">STUDENT SECTION</Link> */}
-        </li>
-        <li className="list-none px-2 h-16 flex items-center justify-center  text-[14px] font-medium font-mono text-center text-white  hover:text-white hover:font-semibold">
-          <Link to="/updates">UPDATES</Link>
-        </li>
-      </ul>
+      <div className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <Link
+            to="/"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-700"
+          >
+            HOME
+          </Link>
+          <Link
+            to="/about"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-700"
+          >
+            ABOUT
+          </Link>
+          <Link
+            to="/contact"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-700"
+          >
+            CONTACT US
+          </Link>
+          <div className="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-700">
+            <select className="bg-transparent border-0 no-arrow w-full text-white cursor-pointer">
+              <option value="" disabled selected hidden>
+                Student Section
+              </option>
+              <option value="">Student Result</option>
+              <option value="">Student Attendance</option>
+            </select>
+          </div>
+          <div className="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-700">
+            <select className="bg-transparent border-0 no-arrow w-full text-white cursor-pointer">
+              <option value="" disabled selected hidden>
+                Courses Section
+              </option>
+              <option value="">6th Standard</option>
+              <option value="">9th Standard</option>
+              <option value="">11th Standard</option>
+            </select>
+          </div>
+          <Link
+            to="/updates"
+            className="block px-3 py-2 rounded-md text-base font-medium hover:bg-orange-700"
+          >
+            UPDATES
+          </Link>
+        </div>
+      </div>
     </nav>
   );
 }
