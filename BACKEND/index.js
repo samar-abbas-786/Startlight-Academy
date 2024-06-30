@@ -3,9 +3,15 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 9000;
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 const User = require("./models/Registration");
 const Teacher = require("./models/teacherLogin");
 const News = require("./models/schoolUpdates");
+const bcrypt = require("bcrypt");
+const { sendToken } = require("./utils/jwtToken");
+const { isAuthorized } = require("./middleware/auth");
+
 require("dotenv").config();
 
 // const updates = [
@@ -28,6 +34,7 @@ mongoose
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -37,8 +44,16 @@ app.get("/", (req, res) => {
 app.post("/student/registration", async (req, res) => {
   try {
     const { Name, email, password, Phone } = req.body;
-    const newUser = await User.create({ Name, email, password, Phone });
-    console.log("New Registration Done", newUser);
+    const salt = await bcrypt.genSalt(10);
+    hashedpassword = await bcrypt.hash(password, salt);
+    const newUser = await User.create({
+      Name,
+      email,
+      password: hashedpassword,
+      Phone,
+    });
+
+    await sendToken(newUser, process.env.JWT_SECRET, res);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -48,11 +63,24 @@ app.post("/student/registration", async (req, res) => {
 app.post("/student/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email: email, password: password });
-    if (!user) {
-      return res.status(404).json({ message: "No User Found" });
+    if (!email || !password) {
+      res.status(400).json({ message: "Please provide all fields" });
     }
-    res.status(200).json(user);
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res.status(400).json({ message: "No user Found" });
+    }
+    const isMatched = await bcrypt.compare(password, user.password);
+    if (!isMatched) {
+      res.status(400).json({ message: "Invalid Password" });
+    }
+    sendToken(user, process.env.JWT_SECRET, res);
+
+    // const user = await User.findOne({ email: email, password: password });
+    // if (!user) {
+    //   return res.status(404).json({ message: "No User Found" });
+    // }
+    // res.status(200).json(user);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -87,7 +115,11 @@ app.post("/teacher/login", async (req, res) => {
 
 //Post Request for Updates
 
-app.post("/school/updates", async (req, res) => {
+app.post("/school/updates", isAuthorized, async (req, res) => {
+  const user = req.user;
+  if (user.role == "student") {
+    return res.status(400).json({ message: "Not allowed to Post" });
+  }
   try {
     const { title, news } = req.body;
     const newNews = await News.create({ title, news });
@@ -100,11 +132,48 @@ app.post("/school/updates", async (req, res) => {
   }
 });
 //getNews from Databases
-app.get("/get/news", async (req, res) => {
+app.get("/get/news", isAuthorized, async (req, res) => {
+  // const { role } = req.user;
+  // if (role !== "student") {
+  //   return res.status(400).json({
+  //     message: "Student Not Allowed",
+  //   });
+  // }
   const news = await News.find();
   res.status(200).json(news);
 });
+app.get("/student/logout", async (req, res) => {
+  res
+    .status(201)
+    .cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    })
+    .json({
+      success: true,
+      message: "logout Successfully",
+    });
+});
+async function getUser(req, res) {
+  // const { token } = req.cookies;
+  // const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+  // const user = await User.findById(decoded.id);
+  // console.log(user);
+  const user = req.user;
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "User not found",
+    });
+  }
 
+  res.status(200).json({
+    success: true,
+    user,
+  });
+}
+
+app.get("/check", isAuthorized, getUser);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
