@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -9,7 +10,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <div className="text-xl font-bold">📚 Starlight Academy</div>
+            <div className="text-xl font-bold text-sky-50">
+              📚 Starlight Academy
+            </div>
             <div className="hidden md:flex space-x-4 ml-10">
               <Link to="/" className="hover:font-semibold">
                 HOME
@@ -21,7 +24,7 @@ export default function Navbar() {
                 CONTACT US
               </Link>
               <div className="relative">
-                <select className="bg-transparent border-0 no-arrow text-white cursor-pointer">
+                <select className="bg-transparent border-0 no-arrow text-white hover:bg-black hover:text-white cursor-pointer">
                   <option value="" disabled selected hidden>
                     Student Section
                   </option>
@@ -30,7 +33,7 @@ export default function Navbar() {
                 </select>
               </div>
               <div className="relative">
-                <select className="bg-transparent border-0 no-arrow text-white cursor-pointer">
+                <select className=" selectBackground bg-transparent border-0 no-arrow text-white cursor-pointer">
                   <option value="" disabled selected hidden>
                     Courses Section
                   </option>

@@ -20,12 +20,11 @@ export default function Hero() {
             {/* a great place to learn */}
           </h2>
           <p className="text-start px-3 w-screen mt-3 text-white text-[16px] font-sans md:text-xl md:px-80 ">
-            Take the first step towards a transformative educational experience.
-            Enroll at{" "}
-            <span className="text-green-200 text-lg">📚Starlight Academy </span>{" "}
-            and embark on a journey of discovery, growth, and success.
+            Starlight Academy envisions a world where every child has access to
+            high-quality education that inspires curiosity, builds character,
+            and encourages lifelong learning
           </p>
-          <button className="text-base w-fit mt-5 bg-indigo-600 rounded-sm py-1 text-white px-3 font-medium  hover:bg-indigo-700 ">
+          <button className="text-base w-fit mt-5 bg-indigo-950 rounded-sm py-1 text-white px-3 font-medium  hover:bg-indigo-700 ">
             Registration
           </button>
         </div>
