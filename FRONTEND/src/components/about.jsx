@@ -49,7 +49,7 @@ const About1 = () => {
           </div>
         ) : null}
       </div>
-      <div className="images-section pt-10 relative  ">
+      <div className="images-section pt-16 pb-8 relative  ">
         {data && data.length > 0 ? (
           <div className="image-item flex flex-col items-center w-full">
             {data.map((image) =>
@@ -68,7 +68,6 @@ const About1 = () => {
         ) : (
           <div>No Image Found</div>
         )}
-        <div className="arrow-right absolute "> = </div>
       </div>
     </div>
   );

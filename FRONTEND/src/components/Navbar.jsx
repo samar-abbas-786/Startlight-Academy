@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex md:justify-evenly items-center">
             <div className="text-xl font-bold text-sky-50">
-              📚 Starlight Academy
+              ⭐ Starlight Academy
             </div>
             <div className="hidden md:flex   md:justify-evenly  space-x-4 ml-10">
               <Link to="/" className="hover:font-semibold">

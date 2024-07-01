@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Footer from "./footern";
+// import Footer from "./footern";
 const parents = () => {
   return (
     <>
@@ -92,7 +92,7 @@ const parents = () => {
         </div>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Footern from "./footern";
+// import Footern from "./footern";
 const Blog = () => {
   return (
     <>
@@ -43,7 +43,7 @@ const Blog = () => {
         </div>
       </section>
 
-      <Footern />
+      {/* <Footern /> */}
     </>
   );
 };

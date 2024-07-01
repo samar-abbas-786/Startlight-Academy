@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 // import hero from "./hero.jpeg";
+import {motion} from "framer-motion"
 import AI from "./AI.jpeg";
 
 export default function Hero() {
@@ -15,9 +16,9 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black opacity-55 flex-col items-center"></div>
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="content flex flex-col h-auto px-16 justify-between items-center w-full md:pb-10  md:space-y-4 pt-10 ">
-          <h1 className="text-white text-3xl md:text-5xl w-screen px-3 md:px-1 font-bold md:text-center">
+          <motion.h1 animate={{scale:1.1}} className="text-white text-3xl md:text-5xl w-screen px-3 md:px-1 font-bold md:text-center">
             Creating Pathways to Excellence{" "}
-          </h1>
+          </motion.h1>
           <h2 className="text-white text-3xl text-center">
             {/* a great place to learn */}
           </h2>
