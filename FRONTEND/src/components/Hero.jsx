@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 // import hero from "./hero.jpeg";
 import AI from "./AI.jpeg";
 
 export default function Hero() {
+  const [image, setImages] = useState([]);
+  
   return (
     <div className="relative w-screen h-screen md:top-14  ">
       <img

@@ -49,10 +49,12 @@ export default function Navbar() {
           </div>
           <div className="md:hidden">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
               className="text-white text-3xl "
             >
-              ☰
+              {isMobileMenuOpen === false ? "☰" : "X"}
             </button>
           </div>
         </div>
