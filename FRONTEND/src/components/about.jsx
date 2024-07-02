@@ -26,9 +26,11 @@ const About1 = () => {
           scale: scaleProgress,
           opacity: scaleProgress,
         }}
-        className="container w-full px-2  "
+        className="container w-full px-2 md:pt-12  "
       >
-        <h2 className="heading">About Us</h2>
+        <h2 className="heading mt-[1.8rem] font-bold text-[21px] md:text-3xl">
+          About Us
+        </h2>
         <h2 className="">--------⭐---------</h2>
         <motion.p
           initial={{ y: -60, opacity: 0 }}
@@ -37,7 +39,7 @@ const About1 = () => {
             duration: "0.8",
             delay: "0.2",
           }}
-          className="para"
+          className="para md:text-xl text-[14.5px] font-sans text-[#262626] mt-[1rem]"
         >
           Welcome to StarLight AcadeMy, where learning is an adventure! Our
           online school is dedicated to providing a dynamic, engaging, and
@@ -45,7 +47,9 @@ const About1 = () => {
           child has the potential to shine, and our mission is to nurture that
           potential with high-quality, accessible, and personalized education.
         </motion.p>
-        <h2 className="heading">Mission</h2>
+        <h2 className="heading mt-[1.8rem] font-bold text-[21px] md:text-3xl">
+          Mission
+        </h2>
         <h2 className="">--------🎯---------</h2>
         {show === false ? (
           <button
@@ -57,7 +61,7 @@ const About1 = () => {
         ) : null}
 
         {show === true ? (
-          <div className="para">
+          <div className="para md:text-xl text-[14.5px] font-sans text-[#262626] mt-[1rem]">
             At StarLight AcadeMy, our mission is to inspire a lifelong love of
             learning. We strive to create a supportive and inclusive environment
             where students can explore their interests, develop critical skills,
@@ -85,7 +89,7 @@ const About1 = () => {
               imageId === image.id ? (
                 <img
                   onClick={() => handleLeft(image.id)}
-                  className="single-image"
+                  className="single-image h-[200px] w-[90vw] rounded-[10px] md:h-[330px] md:w-[50vw]"
                   key={image.id}
                   src={image.url}
                   alt=""

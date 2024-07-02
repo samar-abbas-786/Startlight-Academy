@@ -45,7 +45,7 @@ export default function Hero() {
               duration: "1",
               delay: "0.4",
             }}
-            className="text-start px-3 w-screen mt-3 text-white text-[16px] font-sans md:text-xl md:px-80 "
+            className="text-start px-3 md:w-[60vw] w-screen mt-3 text-white text-[16px] font-sans md:text-xl md:px-80 "
           >
             Starlight Academy envisions a world where every child has access to
             high-quality education that inspires curiosity, builds character,

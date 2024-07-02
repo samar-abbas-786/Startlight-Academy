@@ -4,19 +4,13 @@
   background-color: black;
 }
 .heading {
-  margin-top: 1.8rem;
-  font-size: 21px;
-  font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
 }
 .para {
-  font-size: 14.5px;
   font-family: sans-serif;
-  color: #262626;
-  margin-top: 1rem;
 }
-.single-image {
+/* .single-image {
   height: 200px;
   width: 90vw;
   border-radius: 10px;
-}
+} */
