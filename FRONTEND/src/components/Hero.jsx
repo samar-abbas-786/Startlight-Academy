@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 // import hero from "./hero.jpeg";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import AI from "./AI.jpeg";
 
 export default function Hero() {
   const [image, setImages] = useState([]);
-  
+
   return (
     <div className="relative w-screen h-screen md:top-14  ">
       <img
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-screen h-full object-cover"
         src={AI}
         alt=""
       />
       <div className="absolute inset-0 bg-black opacity-55 flex-col items-center"></div>
       <div className="absolute inset-0 flex justify-center items-center">
         <div className="content flex flex-col h-auto px-16 justify-between items-center w-full md:pb-10  md:space-y-4 pt-10 ">
-          <motion.h1 animate={{scale:1.1}} className="text-white text-3xl md:text-5xl w-screen px-3 md:px-1 font-bold md:text-center">
+          <h1 className="text-white text-3xl md:text-5xl w-screen px-3 md:px-1 font-bold md:text-center">
             Creating Pathways to Excellence{" "}
-          </motion.h1>
+          </h1>
           <h2 className="text-white text-3xl text-center">
             {/* a great place to learn */}
           </h2>
