@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import data from "../ArrayOfImages/data";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
 const About1 = () => {
   const [show, setShow] = useState(false);
   const [imageId, setImageId] = useState(0);
@@ -9,19 +12,39 @@ const About1 = () => {
   // {
   //   setInterval(handleLeft, 2000);
   // }
-
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.33 1"],
+  });
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
   return (
     <div>
-      <div className="container w-full px-2  ">
+      <motion.div
+        ref={ref}
+        style={{
+          scale: scaleProgress,
+          opacity: scaleProgress,
+        }}
+        className="container w-full px-2  "
+      >
         <h2 className="heading">About Us</h2>
         <h2 className="">--------⭐---------</h2>
-        <p className="para">
+        <motion.p
+          initial={{ y: -60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: "0.8",
+            delay: "0.2",
+          }}
+          className="para"
+        >
           Welcome to StarLight AcadeMy, where learning is an adventure! Our
           online school is dedicated to providing a dynamic, engaging, and
           interactive educational experience for children. We believe that every
           child has the potential to shine, and our mission is to nurture that
           potential with high-quality, accessible, and personalized education.
-        </p>
+        </motion.p>
         <h2 className="heading">Mission</h2>
         <h2 className="">--------🎯---------</h2>
         {show === false ? (
@@ -48,8 +71,14 @@ const About1 = () => {
             </button>
           </div>
         ) : null}
-      </div>
-      <div className="images-section pt-16 pb-8 relative  ">
+      </motion.div>
+      <motion.div
+        style={{
+          scale: scaleProgress,
+          opacity: scaleProgress,
+        }}
+        className="images-section pt-16 pb-8 relative  "
+      >
         {data && data.length > 0 ? (
           <div className="image-item flex flex-col items-center w-full">
             {data.map((image) =>
@@ -68,7 +97,7 @@ const About1 = () => {
         ) : (
           <div>No Image Found</div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };
