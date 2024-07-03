@@ -93,7 +93,7 @@ const About1 = () => {
                   key={image.id}
                   src={image.url}
                   alt=""
-                  srcset=""
+                  srcSet=""
                 />
               ) : null
             )}
